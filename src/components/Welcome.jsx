@@ -1,14 +1,15 @@
 import React from 'react'
-import logo from './logo.svg'
-import './App.css'
+import logo from '../logo.svg'
+import '../App.css'
 
-function Welcome() {
+// TODO make into a more useful Welcome page
+function Welcome({ user }) {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Welcome, {user}
         </p>
         <a
           className="App-link"
