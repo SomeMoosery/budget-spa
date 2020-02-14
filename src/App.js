@@ -31,7 +31,7 @@ function App() {
     return (
       <div className="App">
         <GoogleLogin
-          clientId="875281779878-d9i5m0kn6uehajcocuepfm568ov6hspa.apps.googleusercontent.com"
+          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
           buttonText="Login"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
