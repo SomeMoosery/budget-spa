@@ -5,6 +5,31 @@ Budget-tracking responsive single-page application built with React, providing G
 **Dependencies Used:**
 - [react-google-login](https://www.npmjs.com/package/react-google-login)
 
+## Prerequisites:
+
+#### Integrate with Google Cloud Platform API
+
+[Follow this link to get started](https://developers.google.com/identity/sign-in/web/sign-in)
+
+## Installation Steps
+
+1. Clone this repo: `git clone https://github.com/SomeMoosery/budget-spa`
+2. `cd budget-spa`
+3. Create your environment file `.env`
+4. In `.env`, add your Google Client ID as such: `GOOGLE_CLIENT_ID="<YOUR-ID-GOES-HERE>"`
+6. Install all dependencies, `npm i`
+5. To run locally, run `npm start` and navigate to `http://localhost:3000` (ensure your project has authorized this JavaScript origin - see Troubleshooting if getting error `"Not a valid origin for the client from Google API Oauth"`)
+
+## Deployment Steps
+
+TODO
+
+## Troubleshooting
+
+TODO
+
+1. Ensuring you have the right Authorized Javascript Origins set: [here](https://developers.google.com/identity/sign-in/web/server-side-flow) [here](https://stackoverflow.com/questions/44068680/not-a-valid-origin-for-the-client-from-google-api-oauth) and [here](https://developers.google.com/identity/sign-in/web/sign-in)
+
 ## Available Scripts
 
 In the project directory, you can run:
