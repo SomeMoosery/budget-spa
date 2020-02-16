@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import './App.css'
 import GoogleLogin from 'react-google-login'
-import Welcome from './components/Welcome'
 import SplashPage from './components/SplashPlage'
 import UserInput from './components/UserInput'
 
@@ -17,16 +16,17 @@ function App() {
     setUser(response.Qt.Ad)
   }
 
+  // Deal with an invalid authentication
   const failureResponse = (response) => {
     setLoginFailure(true)
   }
 
   // Programatically determine what to display based on auth
+  // ! I'M PASSING USER FROM APP TO USERINPUT TO RESULT AND NOT USING REDUX BECAUSE THIS IS THE ONLY TIME I DO IT
   if (loggedIn) {
     return (
       <div className="App">
-        <Welcome user={user} />
-        <UserInput />
+        <UserInput user={user}/>
       </div>
     )
   } else {

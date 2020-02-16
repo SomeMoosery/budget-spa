@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-// import '../App.css'
-import './UserInput.css'
-import PropTypes from 'prop-types';
-import Tooltip from '@material-ui/core/Tooltip';
-import Slider from '@material-ui/core/Slider';
-import TextField from '@material-ui/core/TextField';
+import PropTypes from 'prop-types'
+import Tooltip from '@material-ui/core/Tooltip'
+import Slider from '@material-ui/core/Slider'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Result from './Result'
 
 const marks = [
     {
@@ -32,47 +32,58 @@ ValueLabelComponent.propTypes = {
     value: PropTypes.number.isRequired,
 };
 
-function UserInput() {
+function UserInput({ user }) {
     // Set state
-    const [salary, setSalary] = useState(0)
+    const [salary, setSalary] = useState(100000)
     const [percentage, setPercentage] = useState(.01)
+    const [submitted, setSubmitted] = useState(false)
 
     const updateSalary = (e) => {
-        console.log(salary)
         setSalary(e.target.value)
     }
 
     const updatePercentage = (e, val) => {
-        console.log(e)
-        console.log(val)
-        console.log(percentage)
-        console.log(e.target.value)
-        setPercentage(val/100)
+        setPercentage(val / 100)
     }
 
-    console.log('user input')
-    return (
-        <div className="App">
-            <p>
-                Enter some input or something
-            </p>
-            <Slider
-                ValueLabelComponent={ValueLabelComponent}
-                aria-label="custom thumb label"
-                defaultValue={1}
-                min={1}
-                max={30}
-                marks={marks}
-                style={{ width: '10em' }}
-                onChangeCommitted={updatePercentage}
-            />
-            <form noValidate autoComplete="off">
-                <TextField className="userInputField" label="Your Salary" variant="outlined" type="number" onChange={updateSalary}/><br />
-                <p>Your Expense: {(salary/12)*percentage}</p>
-                <TextField className="userInputField" label="Your Savings" variant="outlined" /><br />
-            </form>
-        </div>
-    );
+    const buttonPress = () => {
+        setSubmitted(!submitted)
+    }
+
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2
+    })
+
+    if (submitted) {
+        return (
+            <div>
+                <Result user={user} election={percentage*100} salary={salary} expense={(salary / 12) * percentage} savings={(salary / 12) * (1 - percentage)}/>
+                <Button variant="contained" color="primary" onClick={buttonPress}>Back</Button>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+                <p>Welcome, {user}</p>
+                <Slider
+                    ValueLabelComponent={ValueLabelComponent}
+                    aria-label="custom thumb label"
+                    defaultValue={percentage*100}
+                    min={1}
+                    max={30}
+                    marks={marks}
+                    style={{ width: '10em' }}
+                    onChangeCommitted={updatePercentage}
+                /><br />
+                <TextField className="userInputField" label="Your Salary" variant="outlined" type="number" onChange={updateSalary} defaultValue='100000' />
+                <p>Your Expense: {formatter.format((salary / 12) * percentage)}</p>
+                <p>Your Savings: {formatter.format((salary / 12) * (1 - percentage))}</p>
+                <Button variant="contained" color="primary" onClick={buttonPress}>Submit</Button>
+            </div>
+        );
+    }
 }
 
 export default UserInput
