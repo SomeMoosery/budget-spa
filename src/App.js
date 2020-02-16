@@ -1,42 +1,51 @@
 import React, { useState } from 'react'
 import './App.css'
 import GoogleLogin from 'react-google-login'
-import Welcome from './components/Welcome';
+import Welcome from './components/Welcome'
+import SplashPage from './components/SplashPlage'
+import UserInput from './components/UserInput'
 
 function App() {
   // Set our state
   const [loggedIn, setLoggedIn] = useState(false)
   const [user, setUser] = useState("")
+  const [loginFailure, setLoginFailure] = useState(false)
 
-  console.log('Starting...')
-  console.log(loggedIn)
-
-  const responseGoogle = (response) => {
-    setLoggedIn(true);
-    console.log(response.Qt.Ad)
+  // Receive  response from Google authentication
+  const successResponse = (response) => {
+    setLoggedIn(true)
     setUser(response.Qt.Ad)
   }
 
-  console.log(loggedIn)
+  const failureResponse = (response) => {
+    setLoginFailure(true)
+  }
 
-
-  // TODO break out into more scalable, functioning application
+  // Programatically determine what to display based on auth
   if (loggedIn) {
-    console.log('Logged in!')
-    return (
-      <Welcome user={user}/>
-    )
-  } else {
-    console.log('Not logged in!')
     return (
       <div className="App">
+        <Welcome user={user} />
+        <UserInput />
+      </div>
+    )
+  } else {
+    return (
+      <div className="App">
+        <SplashPage />
         <GoogleLogin
+          className="loginButton"
           clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-          buttonText="Login"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
+          buttonText="Authenticate with Google to Enter"
+          onSuccess={successResponse}
+          onFailure={failureResponse}
           cookiePolicy={'single_host_origin'}
         />
+        {loginFailure ? 
+          <div>Error - unable to login. Are your username and password correct?</div> 
+          : 
+          <div></div>
+        }
       </div>
     )
   }
