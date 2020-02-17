@@ -5,6 +5,7 @@ import Slider from '@material-ui/core/Slider'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Result from './Result'
+import Grid from '@material-ui/core/Grid';
 
 const marks = [
     {
@@ -33,7 +34,6 @@ ValueLabelComponent.propTypes = {
 };
 
 function UserInput({ user }) {
-    // Set state
     const [salary, setSalary] = useState(100000)
     const [percentage, setPercentage] = useState(.01)
     const [submitted, setSubmitted] = useState(false)
@@ -59,28 +59,42 @@ function UserInput({ user }) {
     if (submitted) {
         return (
             <div>
-                <Result user={user} election={percentage*100} salary={salary} expense={(salary / 12) * percentage} savings={(salary / 12) * (1 - percentage)}/>
+                <Result user={user} election={percentage * 100} salary={salary} expense={(salary / 12) * percentage} savings={(salary / 12) * (1 - percentage)} />
                 <Button variant="contained" color="primary" onClick={buttonPress}>Back</Button>
             </div>
         )
     } else {
         return (
             <div>
-                <p>Welcome, {user}</p>
-                <Slider
-                    ValueLabelComponent={ValueLabelComponent}
-                    aria-label="custom thumb label"
-                    defaultValue={percentage*100}
-                    min={1}
-                    max={30}
-                    marks={marks}
-                    style={{ width: '10em' }}
-                    onChangeCommitted={updatePercentage}
-                /><br />
-                <TextField className="userInputField" label="Your Salary" variant="outlined" type="number" onChange={updateSalary} defaultValue='100000' />
-                <p>Your Expense: {formatter.format((salary / 12) * percentage)}</p>
-                <p>Your Savings: {formatter.format((salary / 12) * (1 - percentage))}</p>
-                <Button variant="contained" color="primary" onClick={buttonPress}>Submit</Button>
+                <Grid container spacing={5}>
+                    <Grid item xs={12}>
+                        <h1>Welcome, {user}</h1>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Slider
+                            ValueLabelComponent={ValueLabelComponent}
+                            aria-label="custom thumb label"
+                            defaultValue={percentage * 100}
+                            min={1}
+                            max={30}
+                            marks={marks}
+                            style={{ width: '10em' }}
+                            onChangeCommitted={updatePercentage}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField className="userInputField" label="Your Salary" variant="outlined" type="number" onChange={updateSalary} defaultValue='100000' />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <p>Your Expense: {formatter.format((salary / 12) * percentage)}</p>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <p>Your Savings: {formatter.format((salary / 12) * (1 - percentage))}</p>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Button variant="contained" color="primary" onClick={buttonPress}>Submit</Button>
+                    </Grid>
+                </Grid>
             </div>
         );
     }

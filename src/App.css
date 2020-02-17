@@ -1,17 +1,19 @@
-html,body{ margin:0; padding:0; height:100%; width:100%; }
 .App {
-  text-align: center;
-  background-color: #CAD3C8;
-  height: 100%;
-  width: 100%;
+  background-color: #dfe6e9;
   left: 0;
   top: 0;
-  /* overflow: hidden; */
-  position: fixed;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  /* border: 3px solid red; */
+  text-align: center;
 }
 
 .loginButton {
-  height: 100px;
+  position: absolute;
+  top: 50%;
+  /* border: 3px solid blue; */
+  left: 40%;
 }
 
 .userInputField {
