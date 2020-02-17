@@ -14,38 +14,38 @@ function App() {
     setUser(response.Qt.Ad)
   }
 
-  const failureResponse = (response) => {
+  const failureResponse = () => {
     setLoginFailure(true)
   }
 
-  // ! I'M PASSING USER FROM APP TO USERINPUT TO RESULT AND NOT USING REDUX BECAUSE THIS IS THE ONLY TIME I DO IT
-  if (loggedIn) {
-    return (
-      <div className="App">
-        <UserInput user={user} />
-      </div>
-    )
-  } else {
-    return (
-      <div className="App">
-        <SplashPage />
-        <div className='loginButton'>
-          <GoogleLogin
-            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-            buttonText="Authenticate with Google to Enter"
-            onSuccess={successResponse}
-            onFailure={failureResponse}
-            cookiePolicy={'single_host_origin'}
-          />
+  return (
+    <div className="App">
+      {loggedIn ?
+        <div>
+          <UserInput user={user} />
         </div>
-        {loginFailure ?
-          <div>Error - unable to login. Are your username and password correct?</div>
-          :
-          <div></div>
-        }
-      </div>
-    )
-  }
+        :
+        <div>
+          <SplashPage />
+          <div className='loginButton'>
+            <GoogleLogin
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              buttonText="Authenticate with Google to Enter"
+              onSuccess={successResponse}
+              onFailure={failureResponse}
+              cookiePolicy={'single_host_origin'}
+            />
+          </div>
+          {loginFailure ?
+            <div>Error - unable to login. Are your username and password correct?</div>
+            :
+            <div></div>
+          }
+        </div>
+      }
+
+    </div>
+  )
 }
 
 export default App
