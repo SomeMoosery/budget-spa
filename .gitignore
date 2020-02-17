@@ -1,6 +1,9 @@
 # environment variables 
 .env 
 
+# serverless
+/.serverless
+
 # dependencies
 /node_modules
 /.pnp

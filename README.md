@@ -1,15 +1,26 @@
-Budget-tracking responsive single-page application built with React, providing Google OAuth authentication and single-command deployment to Heroku.
-
-**Project created with create-react-app**
-
-**Dependencies Used:**
-- [react-google-login](https://www.npmjs.com/package/react-google-login)
+Budget-tracking responsive single-page application built with React, providing Google OAuth authentication and single-command deployment to AWS using Serverless.
 
 ## Prerequisites:
 
 #### Integrate with Google Cloud Platform API
 
 [Follow this link to get started](https://developers.google.com/identity/sign-in/web/sign-in)
+
+#### Setup AWS Environment
+
+[Follow this link to get started](https://serverless.com/blog/react-apps-with-serverless-components/)
+
+1. Ensure you have a valid AWS account
+2. In the AWS console, navigate IAM and create a new user
+    - Ensure `Programmatic Access` is enabled
+    - Ensure `serverless-framework` is in the name
+    - Give this new user `AdministratorAccess` policy (can fine-tune policies later)
+        - We really just need S3, Certificate Manager, Cloudfront, Route53
+    - **Be sure to save the `Access Key ID` and `Secret Access Key` in a secure location!!**
+3. Ensure Serverless (version > 1.49) is installed. If not, run `npm i -g serverless`
+4. In `.env`, add:
+    - `AWS_ACCESS_KEY_ID=<YOUR-AWS-ACCESS-KEY-ID>`
+    - `AWS_SECRET_ACCESS_KEY=<YOUR-AWS-SECRET-ACCESS-KEY>`
 
 ## Installation Steps
 
@@ -22,7 +33,9 @@ Budget-tracking responsive single-page application built with React, providing G
 
 ## Deployment Steps
 
-TODO
+1. Simply run `serverless` in your project directory to deploy and udpate your app
+    - The URL will be given after the command successfully runs
+    - **NOTE:** On your first deployment, it may take up to an hour the site to appear at the given URL
 
 ## Troubleshooting
 
@@ -42,6 +55,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
+### `serverless`
+
+Deploys the app to AWS.<br />
+Follow the provided URL after the comamnd completes to view it in the browser.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br />
@@ -57,12 +75,6 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Dependencies Used:**
+- [react-google-login](https://www.npmjs.com/package/react-google-login)
+- [material-ui](https://www.npmjs.com/package/@material-ui/core)
