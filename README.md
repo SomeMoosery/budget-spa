@@ -8,8 +8,6 @@ Budget-tracking responsive single-page application built with React, providing G
 
 #### Setup AWS Environment
 
-[Follow this link to get started](https://serverless.com/blog/react-apps-with-serverless-components/)
-
 1. Ensure you have a valid AWS account
 2. In the AWS console, navigate IAM and create a new user
     - Ensure `Programmatic Access` is enabled
@@ -38,8 +36,6 @@ Budget-tracking responsive single-page application built with React, providing G
     - **NOTE:** On your first deployment, it may take up to an hour the site to appear at the given URL
 
 ## Troubleshooting
-
-TODO
 
 1. Ensuring you have the right Authorized Javascript Origins set: [here](https://developers.google.com/identity/sign-in/web/server-side-flow) [here](https://stackoverflow.com/questions/44068680/not-a-valid-origin-for-the-client-from-google-api-oauth) and [here](https://developers.google.com/identity/sign-in/web/sign-in)
 

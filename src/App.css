@@ -5,17 +5,52 @@
   right: 0;
   bottom: 0;
   position: absolute;
-  /* border: 3px solid red; */
   text-align: center;
+  overflow: hidden;
+}
+
+.content {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .loginButton {
-  position: absolute;
-  top: 50%;
-  /* border: 3px solid blue; */
-  left: 40%;
+  margin-bottom: 1em;
+}
+
+.errorMessage {
+  color: #d63031;
 }
 
 .userInputField {
   padding: 5px solid black;
+}
+
+.SplashPage {
+  padding: 1em;
+}
+
+.bottomButton {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 2em;
+}
+
+.bottomButton > button {
+  width: 100px;
+}
+
+.MuiSlider-markLabel {
+  margin-top: 0.8em;
+}
+
+.MuiSlider-mark {
+  visibility: hidden;
+}
+
+.budgetContent {
+  margin-top: 3em;
 }
