@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
+import '../App.css'
+import { Result } from '../index'
 import PropTypes from 'prop-types'
-import Tooltip from '@material-ui/core/Tooltip'
-import Slider from '@material-ui/core/Slider'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
-import Result from './Result'
-import Grid from '@material-ui/core/Grid';
+import { Tooltip, Slider, TextField, Button, Grid } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core'
 
 const marks = [
     {
@@ -56,45 +55,68 @@ function UserInput({ user }) {
         minimumFractionDigits: 2
     })
 
+    const CustomSlider = withStyles({
+        root: {
+            color: 'primary',
+        },
+        thumb: {
+            height: 30,
+            width: 30,
+            backgroundColor: '#fff',
+            border: '2px solid currentColor   ',
+            marginTop: -10,
+            marginLeft: -15,
+            '&:focus,&:hover,&$active': {
+                boxShadow: 'inherit',
+            },
+        },
+        track: {
+            height: 8,
+            borderRadius: 4,
+        },
+        rail: {
+            height: 8,
+            borderRadius: 4,
+        },
+    })(Slider);
+
     if (submitted) {
         return (
             <div>
                 <Result user={user} election={percentage * 100} salary={salary} expense={(salary / 12) * percentage} savings={(salary / 12) * (1 - percentage)} />
-                <Button variant="contained" color="primary" onClick={buttonPress}>Back</Button>
+                <div className="bottomButton"><Button variant="contained" color="primary" onClick={buttonPress}>Back</Button></div>
             </div>
         )
     } else {
         return (
-            <div>
-                <Grid container spacing={5}>
+            <div className='budgetContent'>
+                <Grid container spacing={4}>
                     <Grid item xs={12}>
-                        <h1>Welcome, {user}</h1>
+                        <Typography variant='h3'>Welcome, {user}</Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <Slider
-                            ValueLabelComponent={ValueLabelComponent}
-                            aria-label="custom thumb label"
+                        <CustomSlider
+                            valueLabelDisplay="auto"
+                            aria-label="custom slider"
                             defaultValue={percentage * 100}
                             min={1}
                             max={30}
                             marks={marks}
-                            style={{ width: '10em' }}
+                            style={{ width: '20em' }}
                             onChangeCommitted={updatePercentage}
                         />
                     </Grid>
                     <Grid item xs={12}>
                         <TextField className="userInputField" label="Your Salary" variant="outlined" type="number" onChange={updateSalary} defaultValue='100000' />
                     </Grid>
-                    <Grid item xs={6}>
-                        <p>Your Expense: {formatter.format((salary / 12) * percentage)}</p>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <p>Your Savings: {formatter.format((salary / 12) * (1 - percentage))}</p>
+                    <Grid item xs={12}>
+                        <Typography variant='h6'>Your Expense: {formatter.format((salary / 12) * percentage)}</Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <Button variant="contained" color="primary" onClick={buttonPress}>Submit</Button>
+                        <Typography variant='h6'>Your Savings: {formatter.format((salary / 12) * (1 - percentage))}</Typography>
                     </Grid>
                 </Grid>
+                <div className="bottomButton"><Button className="bottomButton" variant="contained" color="primary" onClick={buttonPress}>Submit</Button></div>
             </div>
         );
     }
