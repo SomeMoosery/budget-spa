@@ -25,7 +25,7 @@ Budget-tracking responsive single-page application built with React, providing G
 1. Clone this repo: `git clone https://github.com/SomeMoosery/budget-spa`
 2. `cd budget-spa`
 3. Create your environment file `.env`
-4. In `.env`, add your Google Client ID as such: `REACT_APP_GOOGLE_CLIENT_ID="<YOUR-ID-GOES-HERE>"`
+4. In `.env`, add your Google Client ID as such: `REACT_APP_GOOGLE_CLIENT_ID="<YOUR-ID-GOES-HERE>"` (with the quotes)
 6. Install all dependencies, `npm i`
 5. To run locally, run `npm start` and navigate to `http://localhost:3000` (ensure your project has authorized this JavaScript origin - see Troubleshooting if getting error `"Not a valid origin for the client from Google API Oauth"`)
 
@@ -33,7 +33,7 @@ Budget-tracking responsive single-page application built with React, providing G
 
 1. Simply run `serverless` in your project directory to deploy and udpate your app
     - The URL will be given after the command successfully runs
-    - **NOTE:** The first time you run this, you'll need to add this URL to your trusted credentials in your Google Cloud Platform project you created for this app!!
+    - **NOTE:** The first time you run this, you'll need to add this URL to your trusted credentials in your Google Cloud Platform project you created for this app!! **Add this BEFORE navigating to the app for the first time**
     - **NOTE:** On your first deployment, it may take up to an hour the site to appear at the given URL
 
 ## Troubleshooting
