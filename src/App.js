@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import './App.css'
 import GoogleLogin from 'react-google-login'
-import { SplashPage, UserInput } from './index'
+import SplashPage from './components/SplashPlage'
+import UserInput from './components/UserInput' 
 import { Typography } from '@material-ui/core'
 
 function App() {
-  console.log('Looking forward to hearing your questions about my design choices about the app!')
   const [loggedIn, setLoggedIn] = useState(false)
   const [user, setUser] = useState("")
   const [loginFailure, setLoginFailure] = useState(false)

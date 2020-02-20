@@ -25,7 +25,7 @@ Budget-tracking responsive single-page application built with React, providing G
 1. Clone this repo: `git clone https://github.com/SomeMoosery/budget-spa`
 2. `cd budget-spa`
 3. Create your environment file `.env`
-4. In `.env`, add your Google Client ID as such: `GOOGLE_CLIENT_ID="<YOUR-ID-GOES-HERE>"`
+4. In `.env`, add your Google Client ID as such: `REACT_APP_GOOGLE_CLIENT_ID="<YOUR-ID-GOES-HERE>"`
 6. Install all dependencies, `npm i`
 5. To run locally, run `npm start` and navigate to `http://localhost:3000` (ensure your project has authorized this JavaScript origin - see Troubleshooting if getting error `"Not a valid origin for the client from Google API Oauth"`)
 
@@ -33,11 +33,13 @@ Budget-tracking responsive single-page application built with React, providing G
 
 1. Simply run `serverless` in your project directory to deploy and udpate your app
     - The URL will be given after the command successfully runs
+    - **NOTE:** The first time you run this, you'll need to add this URL to your trusted credentials in your Google Cloud Platform project you created for this app!!
     - **NOTE:** On your first deployment, it may take up to an hour the site to appear at the given URL
 
 ## Troubleshooting
 
-1. Ensuring you have the right Authorized Javascript Origins set: [here](https://developers.google.com/identity/sign-in/web/server-side-flow) [here](https://stackoverflow.com/questions/44068680/not-a-valid-origin-for-the-client-from-google-api-oauth) and [here](https://developers.google.com/identity/sign-in/web/sign-in)
+1. Ensure you have the right Authorized Javascript Origins set: [here](https://developers.google.com/identity/sign-in/web/server-side-flow) [here](https://stackoverflow.com/questions/44068680/not-a-valid-origin-for-the-client-from-google-api-oauth) and [here](https://developers.google.com/identity/sign-in/web/sign-in)
+2. If you deployed the site, visit the listed URL, and get an error in the window when clicking on the Google Authentication button: make sure that you have added the this URL to your Google Cloud Platform project under Credentials.
 
 ## Available Scripts
 

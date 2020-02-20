@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../App.css'
-import { Result } from '../index'
+import Result from '../components/Result'
 import PropTypes from 'prop-types'
 import { Tooltip, Slider, TextField, Button, Grid } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles';
